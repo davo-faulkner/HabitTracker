@@ -1,13 +1,20 @@
 package co.davo.habittracker;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
+
+import co.davo.habittracker.data.HabitContract.HabitEntry;
+import co.davo.habittracker.data.HabitDbHelper;
 
 public class HistoryActivity extends AppCompatActivity {
+    private HabitDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +31,33 @@ public class HistoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        dbHelper = new HabitDbHelper(this);
     }
-}
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //displayDatabaseInfo();
+    }
+
+    private void displayDatabaseInfo() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String[] projection = {
+                HabitEntry._ID,
+                HabitEntry.COLUMN_WEIGHT,
+                HabitEntry.COLUMN_DATE };
+
+        Cursor cursor = db.query(
+                HabitEntry.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        TextView displayView = (TextView) findViewById(R.id.text_view_weight);
+        }
+    }
