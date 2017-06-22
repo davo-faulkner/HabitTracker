@@ -38,10 +38,11 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        displayDatabaseInfo();
+        Cursor cursor = displayDatabaseInfo();
+        cursor.close();
     }
 
-    private void displayDatabaseInfo() {
+    private Cursor displayDatabaseInfo() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[] projection = {
@@ -60,27 +61,24 @@ public class HistoryActivity extends AppCompatActivity {
 
         TextView displayView = (TextView) findViewById(R.id.text_view_weight);
 
-        try {
-            displayView.setText("The habits table contains " + cursor.getCount() + " weight entries.\n\n");
-            displayView.append(HabitEntry._ID + " - " +
-                    HabitEntry.COLUMN_WEIGHT + " - " +
-                    HabitEntry.COLUMN_DATE + "\n");
+        displayView.setText("The habits table contains " + cursor.getCount() + " weight entries.\n\n");
+        displayView.append(HabitEntry._ID + " - " +
+                HabitEntry.COLUMN_WEIGHT + " - " +
+                HabitEntry.COLUMN_DATE + "\n");
 
-            int idColumnIndex = cursor.getColumnIndex(HabitEntry._ID);
-            int weightColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_WEIGHT);
-            int dateColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_DATE);
+        int idColumnIndex = cursor.getColumnIndex(HabitEntry._ID);
+        int weightColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_WEIGHT);
+        int dateColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_DATE);
 
-            while (cursor.moveToNext()) {
-                int currentId = cursor.getInt(idColumnIndex);
-                int currentWeight = cursor.getInt(weightColumnIndex);
-                String currentDate = cursor.getString(dateColumnIndex);
+        while (cursor.moveToNext()) {
+            int currentId = cursor.getInt(idColumnIndex);
+            int currentWeight = cursor.getInt(weightColumnIndex);
+            String currentDate = cursor.getString(dateColumnIndex);
 
-                displayView.append("\n" + currentId + " - " +
-                        currentWeight + " lbs - " +
-                        currentDate);
-            }
-        } finally {
-            cursor.close();
+            displayView.append("\n" + currentId + " - " +
+                    currentWeight + " lbs - " +
+                    currentDate);
         }
+        return cursor;
     }
 }
