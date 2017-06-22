@@ -38,7 +38,7 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //displayDatabaseInfo();
+        displayDatabaseInfo();
     }
 
     private void displayDatabaseInfo() {
@@ -47,7 +47,7 @@ public class HistoryActivity extends AppCompatActivity {
         String[] projection = {
                 HabitEntry._ID,
                 HabitEntry.COLUMN_WEIGHT,
-                HabitEntry.COLUMN_DATE };
+                HabitEntry.COLUMN_DATE};
 
         Cursor cursor = db.query(
                 HabitEntry.TABLE_NAME,
@@ -59,5 +59,14 @@ public class HistoryActivity extends AppCompatActivity {
                 null);
 
         TextView displayView = (TextView) findViewById(R.id.text_view_weight);
+
+        try {
+            displayView.setText("The habits table contains " + cursor.getCount() + " weight entries.\n\n");
+            displayView.append(HabitEntry._ID + " - " +
+                    HabitEntry.COLUMN_WEIGHT + " - " +
+                    HabitEntry.COLUMN_DATE);
+        } finally {
+            cursor.close();
         }
     }
+}

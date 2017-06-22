@@ -21,7 +21,7 @@ public class HabitDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_HABITS_TABLE = "CREATE TABLE" + HabitEntry.TABLE_NAME + " ("
+        String SQL_CREATE_HABITS_TABLE = "CREATE TABLE " + HabitEntry.TABLE_NAME + " ("
                 + HabitEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + HabitEntry.COLUMN_WEIGHT + " INTEGER NOT NULL DEFAULT 0, "
                 + HabitEntry.COLUMN_DATE + " TEXT NOT NULL);";
