@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center_vertical"
     tools:context="co.davo.habittracker.EditorActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="80dp">
+
+        <!-- Weight field -->
+        <EditText
+            android:id="@+id/weight"
+            android:hint="@string/hint_weight"
+            android:inputType="number"
+            style="@style/EditorFieldStyle" />
+
+        <!-- Units for weight (kg) -->
+        <TextView
+            android:id="@+id/label_weight_units"
+            android:text="@string/unit_weight"
+            style="@style/EditorUnitsStyle"/>
+    </RelativeLayout>
+</LinearLayout>

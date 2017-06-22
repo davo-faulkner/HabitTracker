@@ -5,8 +5,10 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 public class EditorActivity extends AppCompatActivity {
+    private EditText weightEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

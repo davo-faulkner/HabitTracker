@@ -5,4 +5,6 @@
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
     <string name="action_delete_all_entries">Delete Weight History</string>
+    <string name="hint_weight">Weight</string>
+    <string name="unit_weight">lbs</string>
 </resources>
