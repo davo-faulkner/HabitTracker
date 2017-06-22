@@ -4,26 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:layout_gravity="center_vertical"
+    android:orientation="horizontal"
     tools:context="co.davo.habittracker.EditorActivity">
 
-    <RelativeLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_margin="80dp">
+    <EditText
+        android:id="@+id/weight_editText"
+        style="@style/EditorFieldStyle"
+        android:hint="@string/hint_weight"
+        android:inputType="number" />
 
-        <!-- Weight field -->
-        <EditText
-            android:id="@+id/weight_editText"
-            android:hint="@string/hint_weight"
-            android:inputType="number"
-            style="@style/EditorFieldStyle" />
+    <TextView
+        android:id="@+id/label_weight_units"
+        style="@style/EditorUnitsStyle"
+        android:text="@string/unit_weight" />
 
-        <!-- Units for weight (kg) -->
-        <TextView
-            android:id="@+id/label_weight_units"
-            android:text="@string/unit_weight"
-            style="@style/EditorUnitsStyle"/>
-    </RelativeLayout>
 </LinearLayout>

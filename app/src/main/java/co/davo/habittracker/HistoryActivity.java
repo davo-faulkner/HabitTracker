@@ -64,7 +64,21 @@ public class HistoryActivity extends AppCompatActivity {
             displayView.setText("The habits table contains " + cursor.getCount() + " weight entries.\n\n");
             displayView.append(HabitEntry._ID + " - " +
                     HabitEntry.COLUMN_WEIGHT + " - " +
-                    HabitEntry.COLUMN_DATE);
+                    HabitEntry.COLUMN_DATE + "\n");
+
+            int idColumnIndex = cursor.getColumnIndex(HabitEntry._ID);
+            int weightColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_WEIGHT);
+            int dateColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_DATE);
+
+            while (cursor.moveToNext()) {
+                int currentId = cursor.getInt(idColumnIndex);
+                int currentWeight = cursor.getInt(weightColumnIndex);
+                String currentDate = cursor.getString(dateColumnIndex);
+
+                displayView.append("\n" + currentId + " - " +
+                        currentWeight + " lbs - " +
+                        currentDate);
+            }
         } finally {
             cursor.close();
         }

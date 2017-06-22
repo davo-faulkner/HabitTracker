@@ -59,9 +59,9 @@ public class EditorActivity extends AppCompatActivity {
     private void insertPet() {
         int weight = Integer.parseInt(weightEditText.getText().toString().trim());
         Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM d, yyyy h:mm a z");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM d, yyyy  h:mm a z");
         String dateString = simpleDateFormat.format(date);
-        
+
         HabitDbHelper dbHelper = new HabitDbHelper(this);
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
