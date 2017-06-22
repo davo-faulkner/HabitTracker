@@ -15,7 +15,7 @@
 
         <!-- Weight field -->
         <EditText
-            android:id="@+id/weight"
+            android:id="@+id/weight_editText"
             android:hint="@string/hint_weight"
             android:inputType="number"
             style="@style/EditorFieldStyle" />
